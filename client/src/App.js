@@ -1,3 +1,4 @@
+import { useCallback, useMemo, useState } from 'react'
 import {
   Circle,
   CircleMarker,
@@ -11,24 +12,22 @@ import {
   useMap
 } from 'react-leaflet'
 import entities from './data/test_data';
+import BattleView from './components/battleView';
+import MarkerElement from './components/markerElement';
 import './App.css';
 
 function App() {
 
-  const battles = entities[0]
-  const battle = entities[0].geojson.geometry.coordinates[0]
-  const battle1= entities[0].geojson.geometry.coordinates[0][0]
+  const battles = entities[0]////////////
+  const battle = entities[0].geojson.geometry.coordinates[0]//////////
+  const battle1= entities[0].geojson.geometry.coordinates[0][0]////////
   const purpleOptions = { color: 'purple' } 
-  
-  // const battles = {
-  //   entities.map(entity => entity.geojson.geometry.coordinates[0])
-  // }
 
-  console.log("entities", entities);
-  console.log("battles", battles);
-  console.log("battle", battle);
-  console.log("battle1", battle1[0]);
-  // const map = useMap();
+  console.log("entities", entities);//////////
+  console.log("battles", battles);////////////
+  console.log("battle", battle);////////////
+  console.log("battle1", battle1[0]);///////
+  
   return (
     <>
       <MapContainer center={[54.236, -4.54]} zoom={6}>
@@ -41,27 +40,11 @@ function App() {
     .map(coordinateArray=> coordinateArray.reverse())} />
 ))
 }  
-{/* <Polygon pathOptions={purpleOptions} positions={battle} /> */}
 {entities.map((entity, index) => (
-  <Marker 
-    eventHandlers={{
-      click: () => {
-        // map.setView(
-        //   entity.geojson.geometry.coordinates[0][0][0],
-        //   14
-        // );
-      }
-    }}
-    
-    position={entity.geojson.geometry.coordinates[0][0][0]}>
-      <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-  </Marker>
+   <MarkerElement entity={entity} />
 ))}
 
 </MapContainer>
-    {/* {entities.map(entity => entity.name)} */}
 
     </>
   );
