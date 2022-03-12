@@ -9,8 +9,11 @@ export const getBattlefields = () => {
 
 };
 
+// using fixed URL to test - response currently null
+//ERROR - "Access to fetch at 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Battle%20of%20Barnet%201471&format=json' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled."
+// SOLVED -> ADD &ORIGIN=* TO SEARCH COMMAND
 export const getWikiEntry = () => {
-    const result = fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Battle%20of%20Barnet%201471&format=json ')
+    const result = fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Battle%20of%20Barnet%201471&format=json&origin=* ')
     .then(res => res.json())
 
     return result
