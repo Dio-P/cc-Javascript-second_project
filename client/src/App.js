@@ -13,10 +13,12 @@ import {
 } from 'react-leaflet'
 import entities from './data/test_data';
 // import BattleView from './components/battleView';
-import MarkerElement from './components/markerElement';
+import MarkerElement from './components/MarkerElement';
+import DiscreteSliderMarks from './components/DiscreteSliderMarks';
 import './App.css';
 
 function App() {
+  const [yearFilter, setYearFilter] = useState(2000);
 
   const battles = entities[0]////////////
   const battle = entities[0].geojson.geometry.coordinates[0]//////////
@@ -28,10 +30,25 @@ function App() {
   console.log("battle", battle);////////////
   console.log("battle1", battle1[0]);///////
 
+
   // something that can be done if we like this functionality is to 
   // have the market hidden by css and only the battlefield view displayed when zooming in
   // we could have it vise versa when on zoom out view (the battlevield to be hidden or non rendering)
   
+  const changeYearValue = (value) => {
+    setYearFilter(value);
+}
+
+const getYearOfBattle = (battlefield) => {
+  const str = battlefield.name;
+  const date = str.slice(str.length - 4).trim();
+  return parseInt(date)
+}
+
+const filteredData = entities.filter(battlefield => {
+  return (getYearOfBattle(battlefield) <= yearFilter)
+})
+
   return (
     <>
       <MapContainer center={[54.236, -4.54]} zoom={6}>
@@ -52,6 +69,8 @@ function App() {
 ))}
 
 </MapContainer>
+<DiscreteSliderMarks changeYearValue={changeYearValue} />
+
 
     </>
   );
