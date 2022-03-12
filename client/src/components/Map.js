@@ -14,14 +14,16 @@ import {
 // import entities from '../data/test_data';
 // import BattleView from './components/battleView';
 import MarkerElement from '../components/MarkerElement';
+import DisplayPosition from './DisplayPosition';
 
 
 const Map = ({ entities }) => {
+    const [map, setMap] = useState(null)
     const purpleOptions = { color: 'purple' }
 
-    return (
-        <>
-          <MapContainer center={[54.236, -4.54]} zoom={6}>
+    const displayMap = useMemo(
+        () => (
+            <MapContainer center={[54.236, -4.54]} zoom={6}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -39,8 +41,13 @@ const Map = ({ entities }) => {
     ))}
     
     </MapContainer>
-    
-        </>
+        ))
+
+    return (
+        <div>
+            {map ? <DisplayPosition map={map} /> : null}
+            {displayMap}
+        </div>
       );
     
 }

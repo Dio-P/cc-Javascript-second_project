@@ -15,10 +15,16 @@ import entities from './data/test_data';
 // import BattleView from './components/battleView';
 import MarkerElement from './components/MarkerElement';
 import DiscreteSliderMarks from './components/DiscreteSliderMarks';
+import Map from './components/Map';
 import './App.css';
 
+const center = [54.236, -4.54]
+const zoom = 6
+
 function App() {
-  const [yearFilter, setYearFilter] = useState(2000);
+  // const [yearFilter, setYearFilter] = useState(2000);
+  // const [position, setPosition] = useState(map.getCenter())
+  const [data, setData] = useState([])
 
   const battles = entities[0]////////////
   const battle = entities[0].geojson.geometry.coordinates[0]//////////
@@ -29,47 +35,36 @@ function App() {
   console.log("battles", battles);////////////
   console.log("battle", battle);////////////
   console.log("battle1", battle1[0]);///////
-
+ 
 
   // something that can be done if we like this functionality is to 
   // have the market hidden by css and only the battlefield view displayed when zooming in
   // we could have it vise versa when on zoom out view (the battlevield to be hidden or non rendering)
   
-  const changeYearValue = (value) => {
-    setYearFilter(value);
-}
+//   const changeYearValue = (value) => {
+//     setYearFilter(value);
+// }
 
-const getYearOfBattle = (battlefield) => {
-  const str = battlefield.name;
-  const date = str.slice(str.length - 4).trim();
-  return parseInt(date)
-}
+// something inside the two functions bellow caused the coordinations error
 
-const filteredData = entities.filter(battlefield => {
-  return (getYearOfBattle(battlefield) <= yearFilter)
-})
+
+// const getYearOfBattle = (battlefield) => {
+//   const str = battlefield.name;
+//   const date = str.slice(str.length - 4).trim();
+//   return parseInt(date)
+// }
+ 
+// const filteredData = entities.filter(battlefield => {
+//   return (getYearOfBattle(battlefield) <= yearFilter)
+// })
 
   return (
     <>
-      <MapContainer center={[54.236, -4.54]} zoom={6}>
-  <TileLayer
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  />
-  {/* this under maps and displayes the battlefield. I tryed to have it in a different 
-  component, but for some reason it dosent like it */}
-{  entities.map(entity => (
-  <Polygon pathOptions={purpleOptions} positions={entity.geojson.geometry.coordinates[0][0]
-    .map(coordinateArray=> coordinateArray.reverse())} />
-))
-} 
- {/*the code bellow maps and renders the markers, this lives in a different component called MarkerElement  */}
-{entities.map((entity, index) => (
-   <MarkerElement entity={entity} />
-))}
+      <Map entities={entities} />
 
-</MapContainer>
-<DiscreteSliderMarks changeYearValue={changeYearValue} />
+<DiscreteSliderMarks />
+{/* changeYearValue={changeYearValue} */}
+
 
 
     </>

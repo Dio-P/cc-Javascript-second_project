@@ -24,6 +24,12 @@ const MarkerElement = ({ entity }) => {
           entity.geojson.geometry.coordinates[0][0][0],
           14
         );
+      },
+      seover: (e) => {
+        e.target.openPopup();
+      },
+      mouseout: (e) => {
+        e.target.closePopup();
       }
     }}
     
