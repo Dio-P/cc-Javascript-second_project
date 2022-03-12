@@ -1,4 +1,4 @@
-use historyApp;
+use HistoryApp;
 db.dropDatabase();
 
 db.battlefields.insertMany([
