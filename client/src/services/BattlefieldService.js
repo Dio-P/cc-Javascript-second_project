@@ -1,15 +1,6 @@
 import {battleNodes} from '../App'
 
-const baseURL = 'http://127.0.0.1:5000/api/battlefields/';
 
-
-export const getBattlefields = () => {
-    const result = fetch(baseURL)
-    .then(res => res.json())
-
-    return result
-
-};
 
 
 // export const QuerySearch = () => {var url = "https://en.wikipedia.org/w/api.php"; 

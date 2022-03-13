@@ -7,54 +7,45 @@ import {useState, useEffect} from 'react'
 
 function App() {
   const [battleData, setBattleData] = useState(null)
+  const [battlefieldNodes, setBattlefieldNodes] = useState(null)
   const [wikiEntry, setWikiEntry] = useState(null)
   const [wikiData, setWikiData] = useState(null)
   
   const wikiBaseURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch='
-  
+  const baseURL = 'http://127.0.0.1:5000/api/battlefields/';
+
+
+  useEffect(() => {
+    fetch(baseURL)
+    .then(res => {res.json()})
+    .then(res => {
+      console.log("res", res);
+      setBattleData(res);
+    })
+    .then(res => {
+      // we are just fetching one [0]
+      fetch(wikiBaseURL + res[0].properties.name)
+      .then(wikiRes => wikiRes.json())
+      .then(wikiRes => {
+        console.log("wikiRes", wikiRes);
+        setWikiData(wikiRes)
+      })
+    })
+    
+  }, []);
+
   //   if (!battleData||!wikiEntry) {return (
   //     <div>
   //     Loading...
   //   </div>
   // ) } 
-  const battlefieldNodes = battleData.map((listItem) => {
-    return  (listItem.properties.name)
-  })
-
-  useEffect ( () => {
-    getBattlefields()
-    .then(data => setBattleData(data))
-    // .then(data => console.dir(data))
-    
-  } , [])
-  
-     const getWikiEntry = () => {
-      const result = fetch(wikiBaseURL + battlefieldNodes[0])
-      .then(res => res.json())
-  
-      setWikiData( result )
-  }
-  useEffect ( () => {
-    getWikiEntry()
-    .then(data => setWikiEntry(data))
-    .then(data => console.dir(data))
-  } , [])
   
 
-
-
-
-
-  
   //needs to get an array from a dictionary
   // const wikiEntryNodes = wikiEntry.map((listItem) => {
   //   return  (listItem.query.search[0].title)
   // })
   
- 
-
-
-
   return (
     <div className="App">
       <p>Hello World</p>
