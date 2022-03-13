@@ -49,16 +49,6 @@ function DisplayMap() {
 function App() {
   const [yearFilter, setYearFilter] = useState(2000);
 
-  // const battles = entities[0]////////////
-  // const battle = entities[0].geojson.geometry.coordinates[0]//////////
-  // const battle1= entities[0].geojson.geometry.coordinates[0][0]////////
-  // const purpleOptions = { color: 'purple' } 
-
-  // console.log("entities", entities);//////////
-  // console.log("battles", battles);////////////
-  // console.log("battle", battle);////////////
-  // console.log("battle1", battle1[0]);///////
- 
 
   // something that can be done if we like this functionality is to 
   // have the market hidden by css and only the battlefield view displayed when zooming in
