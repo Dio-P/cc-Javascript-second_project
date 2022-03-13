@@ -11,6 +11,14 @@ import {
     Marker,
     useMap
   } from 'react-leaflet';
+  import { Icon } from "leaflet";
+
+
+  export const icon = new Icon({
+    iconUrl: "/310788.svg",
+    iconSize: [25, 25]
+  });
+  
 
 const MarkerElement = ({ entity }) => {
     // const purpleOptions = { color: 'purple' };
@@ -32,7 +40,7 @@ const MarkerElement = ({ entity }) => {
         e.target.closePopup();
       }
     }}
-    
+    icon={icon}
     position={entity.geojson.geometry.coordinates[0][0][0]}>
       <Popup>
       A pretty CSS3 popup. <br /> Easily customizable.

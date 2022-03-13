@@ -13,11 +13,12 @@ import {
 } from 'react-leaflet'
 // import entities from '../data/test_data';
 // import BattleView from './components/battleView';
-import MarkerElement from '../components/MarkerElement';
+import MarkerElement from './MarkerElement';
 import DiscreteSliderMarks from './DiscreteSliderMarks';
 
 // const center = [54.236, -4.54]
 // const zoom = 6
+
 
 function DisplayMap({ battlesData }) {
   
