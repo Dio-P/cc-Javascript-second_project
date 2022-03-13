@@ -17,6 +17,7 @@ import MarkerElement from './components/MarkerElement';
 import DiscreteSliderMarks from './components/DiscreteSliderMarks';
 import Map from './components/Map';
 import BattlesDataContext from './context/battlesDataContext';
+import SimpleMap from './components/SimpleMap';
 import './App.css';
 
 
@@ -28,9 +29,9 @@ const purpleOptions = { color: 'purple' }
 
 
 
-const DisplayMap = () =>{
-  const [battleData, setBattleData] = useState([])
-  console.log("battleData[0] Display", battleData[0]);
+const DisplayMap = ({ battlesData }) =>{
+  // const [battleData, setBattleData] = useState([])
+  console.log("battlesData", battlesData);
 
   
 // const entities = battlesData;
@@ -54,7 +55,7 @@ const DisplayMap = () =>{
 
   return (
     <>
-    {/* {(battleData[0] !== undefined)? */}
+    {battlesData?
       <MapContainer center={[54.236, -4.54]} zoom={6}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -62,19 +63,19 @@ const DisplayMap = () =>{
       />
       {/* this under maps and displayes the battlefield. I tryed to have it in a different 
       component, but for some reason it dosent like it */}
-    {  entities.map(entity => (
+    {/* {  battlesData.map(entity => (
       <Polygon pathOptions={purpleOptions} positions={entity.geojson.geometry.coordinates[0][0]
         .map(coordinateArray=> coordinateArray.reverse())} />
     ))
-    } 
+    }  */}
     {/*the code bellow maps and renders the markers, this lives in a different component called MarkerElement  */}
-    {entities.map((entity, index) => (
+    {battlesData.map((entity, index) => (
       <MarkerElement entity={entity} />
     ))}
     
     </MapContainer>
-    {/* : */}
-    {/* <p>loading</p>} */}
+    : 
+    <p>loading</p>}
     {/* <DiscreteSliderMarks  */}
   {/* changeYearValue={changeYearValue} */}
   {/* /> */}
@@ -110,43 +111,43 @@ function App() {
 // // let entities = ()=>entitiesTry()
 
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5050/api/battles")
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     setBattlesData(res);
-  //     const battleDataContext = React.createContext(res);
-  //   })
-    
-  // }, []);
-
   useEffect(() => {
-    const battleDataArray = async() =>{
-      try{
-        const initialData = await fetch("http://localhost:5050/api/battles");
-        let battleData = initialData.json()
-        console.log("battleData inside", battleData);
-        return battleData
-      }catch(e){
-        console.error(e);
-      }
-    }
-    let preBattleData = async() => {
-      battleDataArray().then(data=> {
-        console.log("data", data);
-        battleData.push(data); 
-        console.log("battleData In", battleData);
-        return data;
-      }).then(data=> {
-        setTimeout(() => {console.log("battleData[0]", battleData[0])}, 1000)
-      })
-      
-    }
-    preBattleData()
-    
-    console.log("battleData3", battleData);
+    fetch("http://localhost:5050/api/battles")
+    .then(res => res.json())
+    .then(res => {
+      console.log("res", res);
+      setBattlesData(res);
+    })
     
   }, []);
+
+  // useEffect(() => {
+  //   const battleDataArray = async() =>{
+  //     try{
+  //       const initialData = await fetch("http://localhost:5050/api/battles");
+  //       let battleData = await initialData.json()
+  //       console.log("battleData inside", battleData);
+  //       return battleData
+  //     }catch(e){
+  //       console.error(e);
+  //     }
+  //   }
+  //   let preBattleData = async() => {
+  //     await battleDataArray().then(data=> {
+  //       console.log("data", data);
+  //       battleData.push(data); 
+  //       console.log("battleData In", battleData);
+  //       return data;
+  //     }).then(data=> {
+  //       setTimeout(() => {console.log("battleData[0]", battleData[0])}, 1000)
+  //     })
+      
+  //   }
+  //   preBattleData()
+    
+  //   console.log("battleData3", battleData);
+    
+  // }, []);
 
   
   return (
@@ -154,7 +155,7 @@ function App() {
     <BattlesDataContext.Provider value={{battlesData}}>
       
       <DisplayMap battlesData={battlesData}/>
-    
+     {/* <SimpleMap entities={entities} /> */}
     
     {/* <Map battlesData={battlesData} /> */}
     </BattlesDataContext.Provider>
