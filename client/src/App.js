@@ -17,23 +17,28 @@ function App() {
 
   useEffect(() => {
     fetch(baseURL)
-    .then(res => {res.json()})
+    .then(res => res.json())
     .then(res => {
       console.log("res", res);
       setBattleData(res);
     })
-    .then(res => {
-      // we are just fetching one [0]
-      fetch(wikiBaseURL + res[0].properties.name)
-      .then(wikiRes => wikiRes.json())
-      .then(wikiRes => {
-        console.log("wikiRes", wikiRes);
-        setWikiData(wikiRes)
-      })
-    })
+
+ 
     
   }, []);
 
+    useEffect(() => {
+      if (battleData){
+        // we are just fetching one [0]
+        console.log("battledata:",battleData);
+        fetch(wikiBaseURL + battleData[0].properties.name)
+        .then(wikiRes => wikiRes.json())
+        .then(wikiRes => {
+          console.log("wikiRes", wikiRes);
+          setWikiData(wikiRes)
+        })}
+
+    }, [battleData])
   //   if (!battleData||!wikiEntry) {return (
   //     <div>
   //     Loading...
@@ -46,13 +51,18 @@ function App() {
   //   return  (listItem.query.search[0].title)
   // })
   
+  console.log(battleData, "return battleData")
+  console.log(wikiData, "return WikiEntry")
   return (
     <div className="App">
-      <p>Hello World</p>
-      {console.log(battleData, "return battleData")}
-      {console.log(wikiEntry, "return WikiEntry")}
+      {(wikiData&&battleData)?
+            <p>{wikiData.query.search[0].title}</p>
+            : 
+            <p>Loading...</p>
+    }
+
       {/* {console.log (QuerySearch, "return Queryseach")} */}
-      {battlefieldNodes[0]}
+      {/* {battlefieldNodes[0]} */}
 
     </div>
   );
