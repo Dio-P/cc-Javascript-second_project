@@ -1,11 +1,11 @@
 // import MainContainer from './containers/MainContainer'
 import './App.css';
-import {getBattlefields, getWikiEntry} from './services/BattlefieldService'
+import {getBattlefields, getWikiEntry, QuerySearch} from './services/BattlefieldService'
 import {useState, useEffect} from 'react'
 
 function App() {
   const [battleData, setBattleData] = useState(null)
-  const [WikiData, setWikiData] = useState(null)
+  const [wikiEntry, setWikiEntry] = useState(null)
   
   
   useEffect ( () => {
@@ -16,33 +16,41 @@ function App() {
   } , [])
   useEffect ( () => {
     getWikiEntry()
-    .then(data => setWikiData(data))
+    .then(data => setWikiEntry(data))
     .then(data => console.dir(data))
-    // returning null
+
+
   } , [])
   
-  if (!battleData) {return (
+  if (!battleData||!wikiEntry) {return (
     <div>
     Loading...
   </div>
 ) } 
-// if (!WikiData) {return (
-  //   <div>
-  //     Loading...
-  //   </div>
-  // ) } 
+// if (!wikiEntry) {return (
+//     <div>
+//       Loading...
+//     </div>
+//   ) } 
   
   const battlefieldNodes = battleData.map((listItem) => {
     return  (listItem.properties.name)
   })
+  //needs to get an array from a dictionary
+  // const wikiEntryNodes = wikiEntry.map((listItem) => {
+  //   return  (listItem.query.search[0].title)
+  // })
+  
+ 
+
 
 
   return (
     <div className="App">
       <p>Hello World</p>
       {console.log(battleData, "return battleData")}
-      {console.log(WikiData, "return WikiData")}
-
+      {console.log(wikiEntry, "return WikiEntry")}
+      {console.log (QuerySearch(), "return Queryseach")}
       {battlefieldNodes}
 
     </div>
