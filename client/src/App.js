@@ -51,6 +51,7 @@ function App() {
       <BattlesDataContext.Provider value={{battlesData}}>
         <Map battlesData={battlesData} />
       </BattlesDataContext.Provider>
+      {/* <DiscreteSliderMarks/> */}
     </div>
   );
 }
