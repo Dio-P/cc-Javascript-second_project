@@ -1,4 +1,22 @@
 .leaflet-container {
-  width: 100vw;
-  height: 100vh;
+  margin: 1em;
+  width: 50vw;
+  height: 97vh;
+}
+
+.mainAppContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr 1fr; */
+}
+
+.mapContainer {
+  grid-area: 1/1/2/2;
+  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
+
+}
+
+.mainInfoContainer {
+  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
+
 }

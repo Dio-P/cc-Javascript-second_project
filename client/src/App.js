@@ -35,10 +35,15 @@ function App() {
 
   
   return (
-    <div>
-      <BattlesDataContext.Provider value={{battlesData}}>
-        <Map battlesData={battlesData} />
-      </BattlesDataContext.Provider>
+    <div className="mainAppContainer">
+      <div className="mapContainer">
+        <BattlesDataContext.Provider value={{battlesData}}>
+          <Map battlesData={battlesData} />
+        </BattlesDataContext.Provider>
+      </div>
+      <div className="mainInfoContainer">
+
+      </div>
       {/* <DiscreteSliderMarks/> */}
     </div>
   );
