@@ -42,7 +42,17 @@ function App() {
         </BattlesDataContext.Provider>
       </div>
       <div className="mainInfoContainer">
-
+        <div className="innerInfoContainer">
+          <div className="parchmentBackground">
+            <div className="whereTheTextInfoIsDisplayedOn">
+              <h1>Main Title</h1>
+              <h3>Particular Battle Title</h3>
+              <p>
+              test test test test test test test test test test test
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       {/* <DiscreteSliderMarks/> */}
     </div>
