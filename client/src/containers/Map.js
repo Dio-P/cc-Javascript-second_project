@@ -37,8 +37,8 @@ const Map = ({ battlesData }) => {
     ))
     } 
     {/*the code bellow maps and renders the markers, this lives in a different component called MarkerElement  */}
-    {battlesData.map((entity, index) => (
-      <MarkerElement entity={entity} />
+    {battlesData.map((battle, index) => (
+      <MarkerElement battle={battle} />
     ))}
     
     </MapContainer>
