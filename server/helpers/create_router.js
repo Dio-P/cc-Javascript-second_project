@@ -1,6 +1,5 @@
-
-const express = require('express');
-const ObjectID = require('mongodb').ObjectID;
+import express from 'express';
+import {ObjectID} from 'mongodb';
 
 const createRouter = function(collection) {
 
@@ -21,4 +20,4 @@ const createRouter = function(collection) {
   return router;
 };
 
-module.exports = createRouter;
+export default createRouter;

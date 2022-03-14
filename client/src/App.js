@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react'
 function App() {
   const [battleData, setBattleData] = useState(null)
   const [battlefieldNodes, setBattlefieldNodes] = useState(null)
-  const [wikiEntry, setWikiEntry] = useState(null)
+  const [wikiContents, setWikiContents] = useState(null)
   const [wikiData, setWikiData] = useState(null)
   
   const wikiBaseURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch='
