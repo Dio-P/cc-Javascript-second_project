@@ -16,7 +16,8 @@
     "express": "^4.17.3",
     "jquery": "^3.6.0",
     "mongodb": "^4.4.1",
-    "node-fetch": "^3.2.3"
+    "node-fetch": "^3.2.3",
+    "wiki-infobox-parser": "^0.1.11"
   },
   "devDependencies": {
     "cors": "^2.8.5",
