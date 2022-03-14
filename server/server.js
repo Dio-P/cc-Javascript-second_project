@@ -1,23 +1,21 @@
 const express = require('express');
 const app = express();
-
-const cors = require('cors');
-app.use(cors());
-
 const MongoClient = require('mongodb').MongoClient;
-const createRouter = require('./helpers/create_router.js');
+const createRouter = require('./helpers/create_router');
+const cors = require('cors');
 
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })
-  .then((client) => {
-    const db = client.db('historyApp');
-    const battleFieldsCollection = db.collection('battlefields');
-    const battlefieldsRouter = createRouter(battlefieldsCollection);
-    app.use('/api/battlefields', battlefieldsRouter);
-  })
-  .catch(console.err);
+MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
+.then(client => {
 
-app.listen(5000, function () {
-  console.log(`Listening on port ${ this.address().port }`);
-});
+  const db = client.db('battles_britain');
+  const battlesCollection = db.collection('battles');
+  const battlesRouter = createRouter(battlesCollection)
+  app.use('/api/battles', battlesRouter);
+})
+  app.listen(5000, function(){
+    console.log(`app listening on port ${this.address().port}`);
+})
+
