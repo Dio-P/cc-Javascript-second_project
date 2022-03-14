@@ -36,6 +36,7 @@ function App() {
   
   return (
     <div className="mainAppContainer">
+      <div class="vignette"></div>
       <div className="mapContainer">
         <BattlesDataContext.Provider value={{battlesData}}>
           <Map battlesData={battlesData} />
