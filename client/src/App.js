@@ -1,16 +1,4 @@
-import React, { useCallback, useMemo, useState, useEffect, useContext } from 'react'
-import {
-  Circle,
-  CircleMarker,
-  MapContainer,
-  Polyline,
-  Polygon,
-  Popup,
-  Rectangle,
-  TileLayer,
-  Marker,
-  useMap
-} from 'react-leaflet'
+import React, { useState, useEffect, useContext } from 'react'
 import DiscreteSliderMarks from './components/DiscreteSliderMarks';
 import Map from './containers/Map';
 import BattlesDataContext from './context/battlesDataContext';
