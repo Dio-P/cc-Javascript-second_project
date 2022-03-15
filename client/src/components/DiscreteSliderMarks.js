@@ -5,23 +5,63 @@ import Slider from '@mui/material/Slider';
 const marks = [
   {
     value: 0,
-    label: '0 AD',
+    label: '900',
+  },
+  {
+    value: 6.25,
+  },
+  {
+    value: 12.5,
+    label: '1000'
+  },
+  {
+    value: 18.75,
   },
   {
     value: 25,
-    label: '500 AD',
+    label: '1100',
+  },
+  {
+    value: 31.25,
+  },
+  {
+    value: 37.5,
+    label: '1200',
+  },
+  {
+    value: 43.75,
   },
   {
     value: 50,
-    label: '1000 AD',
+    label: '1300'
+  },
+  {
+    value: 56.25,
+  },
+  {
+    value: 62.5,
+    label: '1400',
+  },
+  {
+    value: 68.75,
   },
   {
     value: 75,
-    label: '1500 AD',
+    label: '1500',
+  },
+  {
+    value: 81.25,
+  },
+  {
+    value: 87.5,
+    label: '1600',
+  },
+  {
+    value: 93.75,
   },
   {
     value: 100,
-    label: '2000 AD'
+    label: '1700',
   },
 ];
 
@@ -29,23 +69,27 @@ function valuetext(value) {
   return `${value} AD`;
 }
 
-function valueLabelFormat(value) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
+function dateConverter(value) {
+    return ( (value * 8) + 900 );
 }
 
-export default function DiscreteSliderMarks({changeYearValue}) {
+function valueLabelFormat(value) {
+//   return marks.findIndex((mark) => mark.value === value) + 1
+    return dateConverter(value);
+}
+
+export default function DiscreteSliderMarks({changeYearValues}) {
 
   function handleOnChange(e) {
-    changeYearValue(e.target.value * 20);
+    changeYearValues( [dateConverter(e.target.value[0]), dateConverter(e.target.value[1])] );
   }
 
-  const defaultValue = 100;
-
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', height: '100%', 'z-index': '1000' }}>
       <Slider
-        aria-label="Restricted values"
-        defaultValue={defaultValue}
+        getAriaLabel={() => 'Date Range'}
+        orientation="vertical"
+        defaultValue={[0, 100]}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         step={null}

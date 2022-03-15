@@ -13,7 +13,7 @@ function App() {
 
   const [filteredBattles, setFilteredBattles] = useState(null);
 
-  const [yearFilter, setYearFilter] = useState(2000);
+  const [filterRange, setFilterRange] = useState([900, 1700]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -40,8 +40,8 @@ function App() {
     })    
   }, []);
 
-  const changeYearValue = (value) => {
-    setYearFilter(value);
+  const changeYearValues = (values) => {
+    setFilterRange(values);
   }
 
   const getYearOfBattle = (battlefield) => {
@@ -49,15 +49,30 @@ function App() {
     return parseInt(date)
   }
 
+  function betweenRange(x, min, max) {
+    return x >= min && x <= max;
+  }
+
   useEffect(() => {
     if(!isLoaded) {
         return 
       }
       const filteredBattlesData = battlesData.filter(
-        (battlefield) => { return (getYearOfBattle(battlefield) <= yearFilter) }
+        (battlefield) => { 
+          if (filterRange[0] <= filterRange[1]) {
+            if ( betweenRange( getYearOfBattle(battlefield), filterRange[0], filterRange[1] ) ) {
+              return battlefield;
+            }
+          }
+          if (filterRange[0] > filterRange[1]) {
+            if ( betweenRange( getYearOfBattle(battlefield), filterRange[1], filterRange[0] ) ) {
+              return battlefield;
+            }
+          }
+        }
       );
       setFilteredBattles(filteredBattlesData);
-  }, [yearFilter]);
+  }, [filterRange]);
   
   return (
     <div className="mainAppContainer">
@@ -66,6 +81,7 @@ function App() {
         <BattlesDataContext.Provider value={{battlesData}}>
           <Map battlesData={filteredBattles} />
         </BattlesDataContext.Provider>
+        <DiscreteSliderMarks changeYearValues={changeYearValues} />
       </div>
       <div className="mainInfoContainer">
         <div className="innerInfoContainer">
@@ -80,7 +96,7 @@ function App() {
           </div>
         </div>
       </div>
-      <DiscreteSliderMarks changeYearValue={changeYearValue} />
+      {/* <DiscreteSliderMarks changeYearValue={changeYearValue} /> */}
     </div>
   );
 }
