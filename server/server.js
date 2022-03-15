@@ -36,14 +36,18 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
       .then(resBattle => {
         const parsedString = stringParser(resBattle.properties.name)   
         wikiParser(`${parsedString}`, function(err, result) {
+          console.log("result from parser",result);
+        if (result) {
+          console.log("just inside if",result)
+          const parser = JSON.parse(result)
+          console.log("JSONparser:",parser );
+          db.collection('WikiData').insertOne(parser) 
+        }
         if (err) {
           console.error(err.message);
-        } else {
-          result => JSON.parse(result)
-          .then(console.log(result))
-          .then( result => db.collection('WikiData').insertOne({result}) )
         }
-      })
+        }
+      )
     }
     )
     })
