@@ -33,13 +33,36 @@ function App() {
     
   }, []);
 
+  const stringParser = (string) => {
+    const stringArray = string.split(' ')
+        stringArray.pop()
+        
+        return stringArray.join(' ')
+    }
+
+  const sendNameToDb = async(name) => {
+    let parsedName = stringParser(name);
+    const sendTheName = await fetch('/battleName', {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    console.log("parsedName", parsedName);
+    
+  }
+
   
   return (
     <div className="mainAppContainer">
       <div class="vignette"></div>
       <div className="mapContainer">
         <BattlesDataContext.Provider value={{battlesData}}>
-          <Map battlesData={battlesData} />
+          <Map battlesData={battlesData} sendNameToDb={(name)=> sendNameToDb(name)}/>
         </BattlesDataContext.Provider>
       </div>
       <div className="mainInfoContainer">

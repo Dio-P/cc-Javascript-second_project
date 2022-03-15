@@ -15,7 +15,7 @@ import MarkerElement from '../components/MarkerElement';
 import DiscreteSliderMarks from '../components/DiscreteSliderMarks';
 import MapPolygon from '../components/MapPolygon';
 
-const Map = ({ battlesData }) => {
+const Map = ({ battlesData, sendNameToDb }) => {
 
   console.log("battlesData", battlesData);
 
@@ -38,7 +38,7 @@ const Map = ({ battlesData }) => {
     } 
     {/*the code bellow maps and renders the markers, this lives in a different component called MarkerElement  */}
     {battlesData.map((entity, index) => (
-      <MarkerElement entity={entity} />
+      <MarkerElement entity={entity} sendNameToDb={sendNameToDb}/>
     ))}
     
     </MapContainer>

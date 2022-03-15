@@ -20,14 +20,16 @@ import {
   });
   
 
-const MarkerElement = ({ entity }) => {
+const MarkerElement = ({ entity, sendNameToDb }) => {
     // const purpleOptions = { color: 'purple' };
     const map = useMap();
+    console.log("entity", entity);
     return (
         <>
             <Marker 
     eventHandlers={{
       click: () => {
+        sendNameToDb(entity.name)
         map.setView(
           entity.geojson.geometry.coordinates[0][0][0],
           14

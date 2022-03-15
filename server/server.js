@@ -1,11 +1,16 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
-const createRouter = require('./helpers/create_router');
-const cors = require('cors');
+import cors from 'cors'
+import fetch from 'node-fetch'
+import {MongoClient, ObjectID}  from 'mongodb';
+import wikiParser from 'wiki-infobox-parser';
+import wikiCall from './helpers/wikiCall.js'
 
-app.use(cors())
-app.use(express.json())
+
+app.use(cors());
+import createRouter from './helpers/create_router.js';
+
+app.use(express.json());
 
 MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
 .then(client => {
@@ -18,4 +23,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   app.listen(5050, function(){
     console.log(`app listening on port ${this.address().port}`);
 })
+app.get('/battleName', function (req, res) {
+  res.status(200)
+  console.log('battle name res :', res);
+  // .sendFile("dist/NatLang.html", { root: "." });
+})
+app.post('/wikiData', wikiCall);
 
