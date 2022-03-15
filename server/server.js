@@ -23,10 +23,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017', { useUnifiedTopology: true })
   app.listen(5050, function(){
     console.log(`app listening on port ${this.address().port}`);
 })
-app.get('/battleName', function (req, res) {
-  res.status(200)
-  console.log('battle name res :', res);
-  // .sendFile("dist/NatLang.html", { root: "." });
-})
+
+// app.post('/battleName', function (req, res) {
+//   res.status(200)
+//   res.json({inserted: true})
+//   console.log('battle name res :', req.body);
+//   wikiCall(req.body.name)
+//   // .sendFile("dist/NatLang.html", { root: "." });
+// })
+
 app.post('/wikiData', wikiCall);
+
 

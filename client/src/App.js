@@ -9,6 +9,8 @@ import './App.css';
 
 function App() {
   const [battlesData, setBattlesData] = useState(null);
+  const [dataGottenFromWiki, setDataGottenFromWiki] = useState(null);
+  const [battleTitle, setBattleTitle] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5050/api/battles")
@@ -27,11 +29,22 @@ function App() {
            }
         }
       });
-      console.log("battlesReversed", battlesReversed);
+      // console.log("battlesReversed", battlesReversed);
+
       setBattlesData(battlesReversed);
     })
     
   }, []);
+
+  useEffect(() => {
+    if(dataGottenFromWiki){
+      const justTheTitle = Object.values(dataGottenFromWiki.title);
+      console.log("dataGottenFromWiki", Object.values(dataGottenFromWiki.title));
+      console.log("justTheValues", justTheTitle[0].title);
+      setBattleTitle(justTheTitle[0].title);
+    }
+    
+  }, [dataGottenFromWiki]);
 
   const stringParser = (string) => {
     const stringArray = string.split(' ')
@@ -42,19 +55,24 @@ function App() {
 
   const sendNameToDb = async(name) => {
     let parsedName = stringParser(name);
-    const sendTheName = await fetch('/battleName', {
+    console.log("parsedName", parsedName);
+    const sendTheName = await fetch('http://localhost:5050/wikiData', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': "application/json"
         // 'Content-Type': 'application/x-www-form-urlencoded',
-      }
-    })
-    console.log("parsedName", parsedName);
+      },
+      body: JSON.stringify({name: parsedName})
+    }).then(res=> res.json())
+    .then( data => setDataGottenFromWiki(data))
+    // console.log("parsedName", parsedName);
     
   }
+
+
 
   
   return (
@@ -69,8 +87,8 @@ function App() {
         <div className="innerInfoContainer">
           <div className="parchmentBackground">
             <div className="whereTheTextInfoIsDisplayedOn">
-              <h1>Main Title</h1>
-              <h3>Particular Battle Title</h3>
+              <h1>Historic Battles of Britain</h1>
+              <h3>{battleTitle? battleTitle: "" }</h3>
               <p>
               test test test test test test test test test test test
               </p>
