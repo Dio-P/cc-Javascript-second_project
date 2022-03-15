@@ -12,7 +12,8 @@ const wikiCall = async(req, res) => {
     console.log("name from within the wiki call", req.body.name);
     const wikiBaseURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch='
     const wikiContentURL = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&rvsection=0&titles='
-    
+    const wikiParserStart = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&requestid=&origin=*&summary=&page='
+    const wikiParserEnd = '&prop=images%7Cwikitext%7Csections&section=1'
 
     const stringParser = (string) => {
     const stringArray = string.split(' ')

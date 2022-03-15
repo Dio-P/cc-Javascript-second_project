@@ -38,9 +38,19 @@ function App() {
 
   useEffect(() => {
     if(dataGottenFromWiki){
+      let descrPrep = []
       const justTheTitle = Object.values(dataGottenFromWiki.title);
-      console.log("dataGottenFromWiki", Object.values(dataGottenFromWiki.title));
+      console.log("dataGottenFromWiki title", Object.values(dataGottenFromWiki.title));
       console.log("justTheValues", justTheTitle[0].title);
+      console.log("justTheValues revisions", justTheTitle[0].revisions);
+      console.log("justTheValues revisions ***", justTheTitle[0].revisions[0]["*"]);
+      console.log("justTheValues revisions conflict", justTheTitle[0].revisions[0]["*"].conflict);
+      console.log("justTheValues revisions *** stringify", JSON.stringify(justTheTitle[0].revisions[0]["*"]));
+      const stringDescription = JSON.stringify(justTheTitle[0].revisions[0]["*"])
+      console.log("justTheValues revisions *** parse", JSON.parse(stringDescription));
+
+      // descrPrep.push(JSON.parse(justTheTitle[0].revisions[0]["*"]))
+      console.log("descrPrep", descrPrep);
       setBattleTitle(justTheTitle[0].title);
     }
     
@@ -69,6 +79,8 @@ function App() {
     }).then(res=> res.json())
     .then( data => {
       console.log("data", data);
+      // console.log("data", data);
+      // console.log("data", data);
       setDataGottenFromWiki(data)
     })
     
