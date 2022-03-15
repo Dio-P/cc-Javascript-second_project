@@ -8,7 +8,14 @@ import './App.css';
 
 
 function App() {
+
   const [battlesData, setBattlesData] = useState(null);
+
+  const [filteredBattles, setFilteredBattles] = useState(null);
+
+  const [yearFilter, setYearFilter] = useState(2000);
+
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5050/api/battles")
@@ -27,19 +34,37 @@ function App() {
            }
         }
       });
-      console.log("battlesReversed", battlesReversed);
       setBattlesData(battlesReversed);
-    })
-    
+      setFilteredBattles(battlesReversed);
+      setIsLoaded(true);
+    })    
   }, []);
 
+  const changeYearValue = (value) => {
+    setYearFilter(value);
+  }
+
+  const getYearOfBattle = (battlefield) => {
+    const date = battlefield.name.split(' ').pop();
+    return parseInt(date)
+  }
+
+  useEffect(() => {
+    if(!isLoaded) {
+        return 
+      }
+      const filteredBattlesData = battlesData.filter(
+        (battlefield) => { return (getYearOfBattle(battlefield) <= yearFilter) }
+      );
+      setFilteredBattles(filteredBattlesData);
+  }, [yearFilter]);
   
   return (
     <div className="mainAppContainer">
-      <div class="vignette"></div>
+      <div className="vignette"></div>
       <div className="mapContainer">
         <BattlesDataContext.Provider value={{battlesData}}>
-          <Map battlesData={battlesData} />
+          <Map battlesData={filteredBattles} />
         </BattlesDataContext.Provider>
       </div>
       <div className="mainInfoContainer">
@@ -55,7 +80,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <DiscreteSliderMarks/> */}
+      <DiscreteSliderMarks changeYearValue={changeYearValue} />
     </div>
   );
 }
