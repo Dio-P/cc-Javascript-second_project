@@ -23,7 +23,6 @@ import {
 const MarkerElement = ({ entity, sendNameToDb }) => {
     // const purpleOptions = { color: 'purple' };
     const map = useMap();
-    console.log("entity", entity);
     return (
         <>
             <Marker 

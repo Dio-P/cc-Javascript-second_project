@@ -67,8 +67,11 @@ function App() {
       },
       body: JSON.stringify({name: parsedName})
     }).then(res=> res.json())
-    .then( data => setDataGottenFromWiki(data))
-    // console.log("parsedName", parsedName);
+    .then( data => {
+      console.log("data", data);
+      setDataGottenFromWiki(data)
+    })
+    
     
   }
 
