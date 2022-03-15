@@ -4,7 +4,7 @@ import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient, ObjectID}  from 'mongodb';
 import wikiParser from 'wiki-infobox-parser';
-import wikiCall from '../helpers/wikiCall'
+import wikiCall from './helpers/wikiCall.js'
 
 
 app.use(cors());

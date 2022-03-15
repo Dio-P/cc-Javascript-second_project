@@ -1,7 +1,7 @@
 import {MongoClient, ObjectID}  from 'mongodb';
 import wikiParser from 'wiki-infobox-parser';
 import cors from 'cors'
-import app from '../server';
+
 
 
 
