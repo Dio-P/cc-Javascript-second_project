@@ -2,6 +2,8 @@ body {
   font-family: 'Alegreya', serif;
   width: 100vw;
   height: 100vh;
+  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
+  background-repeat:repeat-x;
 }
 
 .vignette {
@@ -31,15 +33,17 @@ body {
 }
 
 .mapContainer {
-  grid-area: 1/1/2/2;
+  /* grid-area: 1/1/2/2; */
+  grid-area: auto/auto/auto;
   background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
-  height: 100vh;
-  width: 50vw;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 50%;
 }
 
 .mainInfoContainer {
   background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
-
+  background-repeat: no-repeat;
 }
 
 .innerInfoContainer {

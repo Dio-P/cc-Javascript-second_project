@@ -81,8 +81,8 @@ function App() {
         <BattlesDataContext.Provider value={{battlesData}}>
           <Map battlesData={filteredBattles} />
         </BattlesDataContext.Provider>
-        <DiscreteSliderMarks changeYearValues={changeYearValues} />
       </div>
+      <DiscreteSliderMarks changeYearValues={changeYearValues} />
       <div className="mainInfoContainer">
         <div className="innerInfoContainer">
           <div className="parchmentBackground">
@@ -96,7 +96,6 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <DiscreteSliderMarks changeYearValue={changeYearValue} /> */}
     </div>
   );
 }

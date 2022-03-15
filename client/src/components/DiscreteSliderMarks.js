@@ -85,7 +85,7 @@ export default function DiscreteSliderMarks({changeYearValues}) {
   }
 
   return (
-    <Box sx={{ width: '100%', height: '100%', 'z-index': '1000' }}>
+    <Box sx={{ width: '80%', height: '80%', 'z-index': '1000' }}>
       <Slider
         getAriaLabel={() => 'Date Range'}
         orientation="vertical"
