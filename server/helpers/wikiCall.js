@@ -13,7 +13,7 @@ const wikiCall = async(req, res) => {
     const wikiBaseURL = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch='
     const wikiContentURL = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&rvsection=0&titles='
     const wikiParserStart = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&requestid=&origin=*&summary=&page='
-    const wikiParserEnd = '&prop=images%7Cwikitext%7Csections&section=1'
+    const wikiParserEnd ='&prop=images%7Cwikitext%7Csections&section=1'
 
     const stringParser = (string) => {
     const stringArray = string.split(' ')
@@ -29,17 +29,25 @@ const wikiCall = async(req, res) => {
             const nameOfBattle = stringParser(wikiRes.query.search[0].title)
             console.log("wikiRes", nameOfBattle);
             console.log("wikiContentURL + wikiRes.query.search[0].title", wikiContentURL + nameOfBattle);
-            return fetch(wikiContentURL + nameOfBattle)
+            console.log("wikiParserStart + nameOfBattle + wikiParserEnd", wikiParserStart + nameOfBattle + wikiParserEnd)
+
+            // return fetch(wikiContentURL + nameOfBattle)
+            return fetch(wikiParserStart + nameOfBattle + wikiParserEnd)
         
         .then(data => data.json())
         // .then(data => res.json(data))
         // .then(data => console.log("data", data.body))
         .then(data => {
             console.log("data", data)
-            console.log("data.pages", Object.values(data.query.pages)[0].title)
+            console.log("data.parse.title", data.parse.title)
+            console.log("data wikitext", data.parse.wikitext["*"])
+            const splitText = JSON.stringify(data.parse.wikitext["*"]).replace(/<[]|_g ,'');
+            console.log("splitText", splitText);
+            console.log("splitText[1]", splitText[1]);
+            // console.log("data.pages", Object.values(data.query.pages)[0].title)
             // console.log("parsed data", JSON.stringify(data))
             res.status(200);
-            res.json({title: data.query.pages});
+            res.json({title: data.parse.title, text: data.parse.wikitext});
         })
     })   
         }
