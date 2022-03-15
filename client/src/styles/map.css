@@ -5,8 +5,8 @@
 } */
 
 /* .custom-markers {
-  position: sticky;
   animation: marker-animate 1s linear infinite;
+  transform-origin: center;
 } */
 
 .leaflet-popup-content {

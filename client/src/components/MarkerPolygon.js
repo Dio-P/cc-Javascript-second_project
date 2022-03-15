@@ -25,10 +25,9 @@ const MarkerPolygon = ({ battle }) => {
   width: 2rem;
   height: 2rem;
   display: block;
-  position: relative;
+  position: absolute;
   border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
-  border: 1px solid #FFFFFF;
-  transition: width 2s;`
+  border: 1px solid #FFFFFF;`
 
   const icon = divIcon({
     // className: animateMarkerToggle,
