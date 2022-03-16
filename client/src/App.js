@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import DiscreteSliderMarks from './components/DiscreteSliderMarks';
 import Map from './containers/Map';
 import BattlesDataContext from './context/battlesDataContext';
-import {reverseCoordinates} from './helpers/reverseCoordinates'
+import {reverseCoordinates} from './helpers/reverseCoordinates';
 
 import './App.css';
 
@@ -13,6 +13,8 @@ function App() {
   const [battleTitle, setBattleTitle] = useState(null);
   const [battleInfoDb, setBattleInfoDb] = useState(null);
   const [battleDescriptionWiki, setBattleDescriptionWiki] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
 
   useEffect(() => {
     fetch("http://localhost:5050/api/battles")
