@@ -12,6 +12,7 @@ function App() {
   const [dataGottenFromWiki, setDataGottenFromWiki] = useState(null);
   const [battleTitle, setBattleTitle] = useState(null);
   const [battleInfoDb, setBattleInfoDb] = useState(null);
+  const [battleImgDb, setBattleImgDb] = useState(null);
   const [battleDescriptionWiki, setBattleDescriptionWiki] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [filteredBattles, setFilteredBattles] = useState(null);
@@ -115,8 +116,9 @@ function App() {
       setDataGottenFromWiki(data);
       for(const battle of battlesData){
         if(battle.name === name){
-          console.log("battle inside", battle);
+          // console.log("battle inside", battle);
           setBattleInfoDb(battle.info)
+          setBattleImgDb(battle.img)
         }
       }
 
@@ -144,6 +146,9 @@ function App() {
           <div className="parchmentBackground">
             <div className="whereTheTextInfoIsDisplayedOn">
               <h1>Historic Battles of Britain</h1>
+              <div> 
+                {battleImgDb? <img src={battleImgDb} alt="an image of the battle" className="img"/> : ""}
+              </div>
               <h3>{battleTitle? battleTitle: "" }</h3>
               <div className="scroll">
                 
