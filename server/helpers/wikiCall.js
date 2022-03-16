@@ -1,5 +1,5 @@
 import {MongoClient, ObjectID}  from 'mongodb';
-import wikiParser from 'wiki-infobox-parser';
+// import wikiParser from 'wiki-infobox-parser';
 import fetch from 'node-fetch'
 
 // import cors from 'cors'
