@@ -16,6 +16,22 @@ const MarkerPolygon = ({ battle, sendNameToDb }) => {
 
   const uniqueRandomColor = stringToColor(battle.name);
 
+  const specialHtmlStyle = `
+  background-image: url('/heart.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 2.5em 2.5em;
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  position: absolute;
+  `
+  const SpecialIcon = divIcon({
+    // className: animateMarkerToggle,
+    className: 'special-marker',
+    html: `<span style="${specialHtmlStyle}" />`
+  })
+
   const markerHtmlStyles = `
   background-image: url('/310788.svg');
   background-repeat: no-repeat;

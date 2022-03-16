@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerPolygon from '../components/MarkerPolygon';
+import SpecialMarker from '../components/SpecialMarker';
 import '../styles/map.css';
 
 const Map = ({ battlesData, sendNameToDb }) => {
@@ -28,6 +29,8 @@ const Map = ({ battlesData, sendNameToDb }) => {
         />
   
         { battlesNodes }
+
+        {/* <SpecialMarker/> */}
   
       </MapContainer>
   
