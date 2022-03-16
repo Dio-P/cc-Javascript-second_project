@@ -14,6 +14,8 @@ function App() {
   const [battleInfoDb, setBattleInfoDb] = useState(null);
   const [battleDescriptionWiki, setBattleDescriptionWiki] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filteredBattles, setFilteredBattles] = useState(null);
+  const [filterRange, setFilterRange] = useState([900, 1700]);
 
 
   useEffect(() => {
@@ -34,6 +36,8 @@ function App() {
         }
       });
       setBattlesData(battlesReversed);
+      setFilteredBattles(battlesReversed);
+      setIsLoaded(true);
     })
     
   }, []);
@@ -48,6 +52,42 @@ function App() {
     
   }, [dataGottenFromWiki]);
 
+
+  const changeYearValues = (values) => {
+    setFilterRange(values);
+  }
+
+  const getYearOfBattle = (battlefield) => {
+    const date = battlefield.name.split(' ').pop();
+    return parseInt(date)
+  }
+
+  function betweenRange(x, min, max) {
+    return x >= min && x <= max;
+  }
+
+  useEffect(() => {
+    if(!isLoaded){
+      return
+    }
+    const filteredBattlesData = battlesData.filter(
+      (battlefield) => { 
+        if (filterRange[0] <= filterRange[1]) {
+          if ( betweenRange( getYearOfBattle(battlefield), filterRange[0], filterRange[1] ) ) {
+            return battlefield;
+          }
+        }
+        if (filterRange[0] > filterRange[1]) {
+          if ( betweenRange( getYearOfBattle(battlefield), filterRange[1], filterRange[0] ) ) {
+            return battlefield;
+          }
+        }
+        // return
+      }
+    );
+    setFilteredBattles(filteredBattlesData);
+    
+  }, [filterRange]);
  
 
   const stringParser = (string) => {
@@ -94,8 +134,9 @@ function App() {
     <div className="mainAppContainer">
       <div class="vignette"></div>
       <div className="mapContainer">
+       <DiscreteSliderMarks changeYearValues={changeYearValues}/>
         <BattlesDataContext.Provider value={{battlesData}}>
-          <Map battlesData={battlesData} sendNameToDb={(name)=> sendNameToDb(name)}/>
+          <Map battlesData={filteredBattles} sendNameToDb={(name)=> sendNameToDb(name)}/>
         </BattlesDataContext.Provider>
       </div>
       <div className="mainInfoContainer">
@@ -111,7 +152,7 @@ function App() {
           </div>
         </div>
       </div>
-      {/* <DiscreteSliderMarks/> */}
+     
     </div>
   );
 }
