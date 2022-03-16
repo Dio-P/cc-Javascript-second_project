@@ -11,6 +11,8 @@ function App() {
   const [battlesData, setBattlesData] = useState(null);
   const [dataGottenFromWiki, setDataGottenFromWiki] = useState(null);
   const [battleTitle, setBattleTitle] = useState(null);
+  const [battleInfoDb, setBattleInfoDb] = useState(null);
+  const [battleDescriptionWiki, setBattleDescriptionWiki] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5050/api/battles")
@@ -29,32 +31,22 @@ function App() {
            }
         }
       });
-      // console.log("battlesReversed", battlesReversed);
-
       setBattlesData(battlesReversed);
     })
     
   }, []);
 
+
   useEffect(() => {
     if(dataGottenFromWiki){
-      // let descrPrep = []
-      // const justTheTitle = Object.values(dataGottenFromWiki.title);
-      // console.log("dataGottenFromWiki title", Object.values(dataGottenFromWiki.title));
-      // console.log("justTheValues", justTheTitle[0].title);
-      // console.log("justTheValues revisions", justTheTitle[0].revisions);
-      // console.log("justTheValues revisions ***", justTheTitle[0].revisions[0]["*"]);
-      // console.log("justTheValues revisions conflict", justTheTitle[0].revisions[0]["*"].conflict);
-      // console.log("justTheValues revisions *** stringify", JSON.stringify(justTheTitle[0].revisions[0]["*"]));
-      // const stringDescription = JSON.stringify(justTheTitle[0].revisions[0]["*"])
-      // console.log("justTheValues revisions *** parse", JSON.parse(stringDescription));
-
-      // descrPrep.push(JSON.parse(justTheTitle[0].revisions[0]["*"]))
       console.log("dataGottenFromWiki", dataGottenFromWiki);
       setBattleTitle(dataGottenFromWiki.title);
+      // const sanitizedtitle = dataGottenFromWiki.title.replase()
     }
     
   }, [dataGottenFromWiki]);
+
+ 
 
   const stringParser = (string) => {
     const stringArray = string.split(' ')
@@ -73,19 +65,25 @@ function App() {
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
         'Content-Type': "application/json"
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({name: parsedName})
     }).then(res=> res.json())
     .then( data => {
       console.log("data", data);
-      // console.log("data", data);
-      // console.log("data", data);
-      setDataGottenFromWiki(data)
+      setDataGottenFromWiki(data);
+      for(const battle of battlesData){
+        if(battle.name === name){
+          console.log("battle inside", battle);
+          setBattleInfoDb(battle.info)
+        }
+      }
+
     })
-    
-    
   }
+
+
+  
+  
 
 
 
@@ -105,7 +103,7 @@ function App() {
               <h1>Historic Battles of Britain</h1>
               <h3>{battleTitle? battleTitle: "" }</h3>
               <p>
-              test test test test test test test test test test test
+              {battleInfoDb? battleInfoDb: ""}
               </p>
             </div>
           </div>
