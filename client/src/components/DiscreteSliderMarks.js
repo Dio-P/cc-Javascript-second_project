@@ -95,9 +95,9 @@ export default function DiscreteSliderMarks({changeYearValues}) {
       borderRadius: '15px',
       opacity: 0.7,
       background: 'white',
-      marginLeft: '0.5em',
+      marginLeft: '1em',
       boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset',
-      padding: '0.5em',
+      // padding: '0.5em',
       }}>
 
       <Typography id='date-range' gutterBottom>

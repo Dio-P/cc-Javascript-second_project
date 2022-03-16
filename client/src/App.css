@@ -21,15 +21,16 @@ body {
   margin-bottom: 1em;
   margin-right: 1em;
   margin-left: 2.5em;
-  width: 50vw;
+  width: 100%;
   height: 95vh;
   margin: 2em;
-  box-shadow: 0px 0px 15px rgb(78, 0, 88);
+  box-shadow: 0px 0px 15px #3575cb;
 }
 
 .mainAppContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+  grid-template-columns: 2fr 1fr;
   /* grid-template-rows: 1fr 1fr 1fr; */
 }
 
@@ -41,10 +42,11 @@ body {
   margin: 0;
   padding: 0;
   min-width: 50%;
+  justify-content: space-around;
 }
 
 .mainInfoContainer {
-  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
+  /* background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg"); */
 
 }
 
@@ -53,10 +55,11 @@ body {
   /* width: 100%;
   width: 50%; */
   min-height: 98vh;
-  min-width: 50vw;
+  min-width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
   
   /* min-width: ; */
 
@@ -69,6 +72,7 @@ body {
   min-height: 98vh;
   width: 32vw;
   text-align: center;
+  margin: auto;
 }
 
 .whereTheTextInfoIsDisplayedOn{
@@ -80,7 +84,7 @@ body {
 
 .scroll {
   display: block; 
-  border: 1px solid red;
+  border: 0px solid red;
   padding: 5px;
   margin-bottom: 5px;
   width: 100%;

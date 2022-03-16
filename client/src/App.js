@@ -134,10 +134,10 @@ function App() {
     <div className="mainAppContainer vignette">
   
       <div className="mapContainer">
-       <DiscreteSliderMarks changeYearValues={changeYearValues}/>
         <BattlesDataContext.Provider value={{battlesData}}>
           <Map battlesData={filteredBattles} sendNameToDb={(name)=> sendNameToDb(name)}/>
         </BattlesDataContext.Provider>
+       <DiscreteSliderMarks changeYearValues={changeYearValues}/>
       </div>
       <div className="mainInfoContainer">
         <div className="innerInfoContainer">
