@@ -41,13 +41,13 @@ const wikiCall = async(req, res) => {
             console.log("data", data)
             console.log("data.parse.title", data.parse.title)
             console.log("data wikitext", data.parse.wikitext["*"])
-            const splitText = JSON.stringify(data.parse.wikitext["*"]).replace(/<[]|_g ,'');
-            console.log("splitText", splitText);
-            console.log("splitText[1]", splitText[1]);
+            // const splitText = JSON.stringify(data.parse.wikitext["*"]).replace(/<[]|_g ,'');
+            // console.log("splitText", splitText);
+            // console.log("splitText[1]", splitText[1]);
             // console.log("data.pages", Object.values(data.query.pages)[0].title)
             // console.log("parsed data", JSON.stringify(data))
             res.status(200);
-            res.json({title: data.parse.title, text: data.parse.wikitext});
+            res.json({title: data.parse.title, text: data.parse.wikitext["*"]});
         })
     })   
         }
