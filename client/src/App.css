@@ -1,5 +1,10 @@
 body {
   font-family: 'Alegreya', serif;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
+  background-repeat: repeat;
+  overflow: hidden;
 }
 
 .vignette {
@@ -29,10 +34,13 @@ body {
 }
 
 .mapContainer {
-  grid-area: 1/1/2/2;
-  background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg");
-  height: 100vh;
-  width: 50vw;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-column-gap: 0;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-width: 50%;
 }
 
 .mainInfoContainer {

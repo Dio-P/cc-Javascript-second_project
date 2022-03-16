@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography'
 
 const marks = [
   {
@@ -85,9 +86,25 @@ export default function DiscreteSliderMarks({changeYearValues}) {
   }
 
   return (
-    <Box sx={{ width: '80%', height: '80%', 'z-index': '1000' }}>
+    <Box sx={{ 
+      width: '80%', 
+      height: '80%',
+      borderTop: '0 0 1em rgba(122, 69, 0, 0.5) inset',
+      borderBottom: '0 0 1em rgba(122, 69, 0, 0.5) inset',
+      alignSelf: 'center',
+      borderRadius: '15px',
+      opacity: 0.7,
+      background: 'white',
+      marginLeft: '0.5em',
+      boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset'
+      }}>
+
+      <Typography id='date-range' gutterBottom>
+        Date Range
+      </Typography>
+
       <Slider
-        getAriaLabel={() => 'Date Range'}
+        getAriaLabel={() => 'date-range'}
         orientation="vertical"
         defaultValue={[0, 100]}
         valueLabelFormat={valueLabelFormat}
@@ -96,7 +113,10 @@ export default function DiscreteSliderMarks({changeYearValues}) {
         valueLabelDisplay="auto"
         marks={marks}
         onChange={handleOnChange}
+        sx={{ height: '75%', marginTop: '1em' }}
+
       />
+
     </Box>
   );
 }     
