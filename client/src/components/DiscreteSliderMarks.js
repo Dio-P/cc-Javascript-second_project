@@ -90,13 +90,14 @@ export default function DiscreteSliderMarks({changeYearValues}) {
       width: '80%', 
       height: '80%',
       borderTop: '0 0 1em rgba(122, 69, 0, 0.5) inset',
-      borderBottom: '0 0 1em rgba(122, 69, 0, 0.5) inset',
+      // borderBottom: '0 0 1em rgba(122, 69, 0, 0.5) inset',
       alignSelf: 'center',
       borderRadius: '15px',
       opacity: 0.7,
       background: 'white',
       marginLeft: '0.5em',
-      boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset'
+      boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset',
+      padding: '0.5em',
       }}>
 
       <Typography id='date-range' gutterBottom>
@@ -113,7 +114,7 @@ export default function DiscreteSliderMarks({changeYearValues}) {
         valueLabelDisplay="auto"
         marks={marks}
         onChange={handleOnChange}
-        sx={{ height: '75%', marginTop: '1em' }}
+        sx={{ height: '80%', marginTop: '1em' }}
 
       />
 

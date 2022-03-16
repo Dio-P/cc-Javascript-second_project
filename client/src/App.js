@@ -131,8 +131,8 @@ function App() {
 
   
   return (
-    <div className="mainAppContainer">
-      <div class="vignette"></div>
+    <div className="mainAppContainer vignette">
+  
       <div className="mapContainer">
        <DiscreteSliderMarks changeYearValues={changeYearValues}/>
         <BattlesDataContext.Provider value={{battlesData}}>
@@ -145,9 +145,11 @@ function App() {
             <div className="whereTheTextInfoIsDisplayedOn">
               <h1>Historic Battles of Britain</h1>
               <h3>{battleTitle? battleTitle: "" }</h3>
-              <p>
-              {battleInfoDb? battleInfoDb: ""}
-              </p>
+              <div className="scroll">
+                
+                  {battleInfoDb? battleInfoDb: ""}
+                
+              </div>
             </div>
           </div>
         </div>
