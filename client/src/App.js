@@ -151,15 +151,12 @@ function App() {
               </div>
               <h3>{battleTitle? battleTitle: "" }</h3>
               <div className="scroll">
-                
                   {battleInfoDb? battleInfoDb: ""}
-                
               </div>
             </div>
           </div>
         </div>
       </div>
-     
     </div>
   );
 }

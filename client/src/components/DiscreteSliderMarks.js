@@ -87,15 +87,15 @@ export default function DiscreteSliderMarks({changeYearValues}) {
 
   return (
     <Box sx={{ 
-      width: '80%', 
-      height: '80%',
+      width: '42%', 
+      height: '70%',
       borderTop: '0 0 1em rgba(122, 69, 0, 0.5) inset',
       // borderBottom: '0 0 1em rgba(122, 69, 0, 0.5) inset',
       alignSelf: 'center',
       borderRadius: '15px',
       opacity: 0.7,
       background: 'white',
-      marginLeft: '1em',
+      // marginLeft: '1em',
       boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset',
       // padding: '0.5em',
       }}>

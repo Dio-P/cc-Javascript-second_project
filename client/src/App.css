@@ -21,10 +21,11 @@ body {
   margin-bottom: 1em;
   margin-right: 1em;
   margin-left: 2.5em;
-  width: 100%;
+  width: 85%;
   height: 95vh;
   margin: 2em;
   box-shadow: 0px 0px 15px #3575cb;
+  border-radius: 15px;
 }
 
 .mainAppContainer {
@@ -41,25 +42,28 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
+  width: 66vw;
   min-width: 50%;
   justify-content: space-around;
 }
 
 .mainInfoContainer {
   /* background-image: url("./styles/images/photo-1597113366853-fea190b6cd82.jpeg"); */
-
+/* margin: auto; */
+margin-top: 2em;
 }
 
 .innerInfoContainer {
-  grid-area: 2/2/3/3;
-  /* width: 100%;
-  width: 50%; */
-  min-height: 98vh;
-  min-width: 50%;
+  /* grid-area: 1/2/2/3; */
+  /* height: 80vh; */
+  /* width: 60vw; */
+  min-height: 100vh;
+  min-width: 50vw;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
+  margin-left: -15em;
   
   /* min-width: ; */
 
@@ -68,20 +72,21 @@ body {
 .parchmentBackground{
   background-image: url("./styles/images/txg5nj.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 98vh;
-  width: 32vw;
+  /* background-size: cover; */
+  height: 100vh;
+  /* width: 50vw; */
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .img {
-  height: 25vh;
+  height: 22vh;
+  border-radius: 15px;
 }
 
 .whereTheTextInfoIsDisplayedOn{
   padding: 3em;
-  margin-top: 4em;
+  margin-top: 1em;
   margin-left: 2em;
 
 }
@@ -91,10 +96,11 @@ body {
   border: 0px solid red;
   padding: 5px;
   margin-bottom: 5px;
-  width: 100%;
-  height: 30vh; 
+  width: 20vw;
+  height: 27vh; 
   overflow-y: scroll;
   overflow-x: hidden;
   z-index: 2;
+  font-size: 20px;
   /* overflow: auto; */
 }
