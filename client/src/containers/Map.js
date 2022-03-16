@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerPolygon from '../components/MarkerPolygon';
 import '../styles/map.css';
+import SpecialMarker from '../components/SpecialMarker';
 
 const Map = ({ battlesData, sendNameToDb }) => {
 
@@ -20,7 +21,7 @@ const Map = ({ battlesData, sendNameToDb }) => {
   return (
     <>
       
-      <MapContainer center={[54.5, -2]} zoom={6} minZoom={5} maxBounds={outerBounds}>
+      <MapContainer center={[53, -1]} zoom={6} minZoom={5} maxBounds={outerBounds}>
 
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -28,7 +29,7 @@ const Map = ({ battlesData, sendNameToDb }) => {
         />
   
         { battlesNodes }
-  
+        <SpecialMarker/>
       </MapContainer>
   
   </>

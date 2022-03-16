@@ -136,12 +136,15 @@ function App() {
     <div className="mainAppContainer vignette">
   
       <div className="mapContainer">
+      <div className="map">
         <BattlesDataContext.Provider value={{battlesData}}>
           <Map battlesData={filteredBattles} sendNameToDb={(name)=> sendNameToDb(name)}/>
         </BattlesDataContext.Provider>
-       <DiscreteSliderMarks changeYearValues={changeYearValues}/>
       </div>
-      <div className="mainInfoContainer">
+      <div className="slider">
+        <DiscreteSliderMarks changeYearValues={changeYearValues}/>
+      </div>
+      </div>
         <div className="innerInfoContainer">
           <div className="parchmentBackground">
             <div className="whereTheTextInfoIsDisplayedOn">
@@ -155,7 +158,6 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

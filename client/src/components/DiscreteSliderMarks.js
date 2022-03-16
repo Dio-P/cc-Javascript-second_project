@@ -87,17 +87,18 @@ export default function DiscreteSliderMarks({changeYearValues}) {
 
   return (
     <Box sx={{ 
+      fontFamily: 'Alegreya',
       width: '42%', 
       height: '70%',
       borderTop: '0 0 1em rgba(122, 69, 0, 0.5) inset',
       // borderBottom: '0 0 1em rgba(122, 69, 0, 0.5) inset',
       alignSelf: 'center',
       borderRadius: '15px',
-      opacity: 0.7,
+      // opacity: 0.9,
       background: 'white',
       // marginLeft: '1em',
       boxShadow: '0 0 2em rgba(122, 69, 0, 0.5) inset',
-      // padding: '0.5em',
+      padding: '2em',
       }}>
 
       <Typography id='date-range' gutterBottom>

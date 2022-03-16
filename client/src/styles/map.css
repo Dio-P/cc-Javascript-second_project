@@ -1,13 +1,14 @@
-/* @keyframes marker-animate {
+@keyframes marker-animate {
   0% {transform: translateY(0px);}
   50% {transform: translateY(10px);}
   100% {transform: translateY(0px);}
-} */
+}
 
-/* .custom-markers {
+.special-marker {
   animation: marker-animate 1s linear infinite;
   transform-origin: center;
-} */
+  align-self: center;
+}
 
 .leaflet-popup-content {
   display: flex;
