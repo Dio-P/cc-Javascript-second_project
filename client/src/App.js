@@ -57,9 +57,9 @@ function App() {
     
   }, []);
 
-// when we have the data, we set the title
-// in a different version that I am going to try to update
-// here we also save the unsanitized info
+  // when we have the data, we set the title
+  // in a different version that I am going to try to update
+  // here we also save the un sanitised info
   useEffect(() => {
     if(dataGottenFromWiki){
       setBattleTitle(dataGottenFromWiki.title);
@@ -67,7 +67,7 @@ function App() {
     
   }, [dataGottenFromWiki]);
 
-
+// Timeline Bar control =========
   const changeYearValues = (values) => {
     setFilterRange(values);
   }
@@ -97,12 +97,13 @@ function App() {
             return battlefield;
           }
         }
-        // return
       }
     );
     setFilteredBattles(filteredBattlesData);
     
   }, [filterRange]);
+
+  //============================
  
 
   const stringParser = (string) => {
@@ -112,14 +113,16 @@ function App() {
         return stringArray.join(' ')
     }
 
+  // when the request to the server side for the second API call is made and
+    // and the response gotten back and set as state
   const sendNameToDb = async(name) => {
     let parsedName = stringParser(name);
     console.log("parsedName", parsedName);
     const sendTheName = await fetch('http://localhost:5050/wikiData', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': "application/json"
       },
@@ -128,23 +131,16 @@ function App() {
     .then( data => {
       console.log("data", data);
       setDataGottenFromWiki(data);
+      // here we use the name of the battle, as included on the Db data 
+      // as reference to access the additional data from the dB
       for(const battle of battlesData){
         if(battle.name === name){
-          // console.log("battle inside", battle);
           setBattleInfoDb(battle.info)
           setBattleImgDb(battle.img)
         }
       }
-
     })
   }
-
-
-  
-  
-
-
-
   
   return (
     <div className="mainAppContainer vignette">
