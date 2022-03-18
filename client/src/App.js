@@ -8,14 +8,24 @@ import './App.css';
 
 
 function App() {
+  // all data gotten from DB
   const [battlesData, setBattlesData] = useState(null);
+  // all data gotten from wikiApi
   const [dataGottenFromWiki, setDataGottenFromWiki] = useState(null);
+  // where only the title from wiki Api is stored 
   const [battleTitle, setBattleTitle] = useState(null);
+  // the hard coded info gotten from the Db
   const [battleInfoDb, setBattleInfoDb] = useState(null);
+  // the hardcoded image gotten from the Db
   const [battleImgDb, setBattleImgDb] = useState(null);
+  // this (bellow) is being gotten as should from the api call on the server side 
+  // but it needs sanitisation. 
+  // Right now the actual battle info is hardcoded on the DB
   const [battleDescriptionWiki, setBattleDescriptionWiki] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  // bellow is the state that stored the filtered battle to be displayed.
   const [filteredBattles, setFilteredBattles] = useState(null);
+  // to be used for getting input from the timeline bar
   const [filterRange, setFilterRange] = useState([900, 1700]);
 
 
@@ -23,6 +33,10 @@ function App() {
     fetch("http://localhost:5050/api/battles")
     .then(res => res.json())
     .then(res => {
+      // the function bellow is reversing each individual coordination array 
+      // without touching the rest of the object. If a simple map is used 
+      // each of the rest of the object's properties are deleted and substituted
+      // with this.
       const battlesReversed = res.map( battle => {
         return { 
           ...battle,
@@ -43,12 +57,12 @@ function App() {
     
   }, []);
 
-
+// when we have the data, we set the title
+// in a different version that I am going to try to update
+// here we also save the unsanitized info
   useEffect(() => {
     if(dataGottenFromWiki){
-      console.log("dataGottenFromWiki", dataGottenFromWiki);
       setBattleTitle(dataGottenFromWiki.title);
-      // const sanitizedtitle = dataGottenFromWiki.title.replase()
     }
     
   }, [dataGottenFromWiki]);
